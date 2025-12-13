@@ -1,6 +1,6 @@
 // src/pages/ContactUsPage.jsx
 import { useState } from "react";
-// import "../styles/ContactUsPage.css";
+import "../styles/ContactUsPage.css";
 
 export default function ContactUsPage() {
   const [activeTab, setActiveTab] = useState("info"); // "info" or "feedback"
