@@ -1,0 +1,110 @@
+/* src/styles/ContactUsPage.css */
+
+/* Page layout */
+.contact-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #2b3747; /* match admin dashboard background */
+  font-family: Arial, sans-serif;
+  color: #fff;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Top tab buttons */
+.contact-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.contact-tab-btn {
+  background-color: #374151;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  color: #d1d5db;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.contact-tab-btn:hover {
+  background-color: #4b5563;
+  color: #fff;
+}
+
+.contact-tab-btn.active {
+  background-color: #2a5bc4ce;
+  color: #fff;
+}
+
+/* Main content area */
+.contact-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Contact card */
+.contact-card {
+  background-color: #374151; /* same as old card */
+  padding: 2rem 3rem;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+  max-width: 600px; /* keep same as before */
+  width: 100%;
+  text-align: center;
+}
+
+/* Card title */
+.contact-card h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Form styles */
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.contact-input {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #4b5563;
+  background-color: #1f2937;
+  color: #fff;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.contact-input::placeholder {
+  color: #d1d5db;
+}
+
+.contact-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #2563eb; /* blue accent */
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.contact-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* Contact info text */
+.contact-info p {
+  margin: 0.5rem 0;
+  text-align: center;
+}

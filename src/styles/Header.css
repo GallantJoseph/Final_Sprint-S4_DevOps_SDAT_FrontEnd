@@ -1,0 +1,79 @@
+/* src/styles/Header.css */
+
+.header {
+  background-color: #19222e;
+  color: #fff;
+  padding: 1rem 0;
+  position: relative; /* needed for pseudo-element */
+  font-family: Arial, sans-serif;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px; /* height of the shadow/glow */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.192), transparent);
+  pointer-events: none; /* so it doesn’t block clicks */
+}
+
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 1rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: #d1d5db; /* light gray text */
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background-color: #374151; /* slightly lighter hover */
+  color: #fff;
+}
+
+.nav-link.active {
+  background-color: #2563eb; /* blue accent for active page */
+  color: #fff;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  color: #d1d5db;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #dc2626; /* red hover for logout */
+  color: #fff;
+}

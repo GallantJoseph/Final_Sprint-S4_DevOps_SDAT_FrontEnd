@@ -1,0 +1,16 @@
+/* Make the app take full height and use flex for layout */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* ensures footer can stick to bottom */
+}
+
+main {
+  flex: 1; /* main content grows to fill space */
+}

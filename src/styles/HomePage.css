@@ -1,0 +1,173 @@
+/* src/styles/HomePage.css */
+
+.home-page {
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #1f2937;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.home-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Toggle bar */
+.toggle-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.toggle-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #374151;
+  border: none;
+  border-radius: 6px;
+  color: #d1d5db;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.toggle-btn:hover {
+  background-color: #4b5563;
+  color: #fff;
+}
+
+.toggle-btn.active {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+/* Refresh button */
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: transparent;
+  color: rgba(33, 218, 73, 0.849);
+  font-weight: bold;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.refresh-btn:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.refresh-icon {
+  font-size: 1.2rem;
+}
+
+.refresh-text {
+  display: inline-block;
+}
+
+/* Spin animation for refresh/loading (if needed in future) */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Search input */
+.search-input {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  flex: 1;
+  max-width: 250px;
+  font-size: 1rem;
+}
+
+/* Flight card */
+.flight-card {
+  background-color: #374151;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.flight-link {
+  display: flex;
+  text-decoration: none;
+  justify-content: center; /* horizontal centering */
+  align-items: center;     /* vertical centering */
+  padding: 0.75rem;
+  background-color: #374151;
+  border: none;
+  border-radius: 6px;
+  color: #d1d5db;
+  font-weight: bold;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+
+.flight-link:hover {
+  background-color: #627b9e;
+  color: #fff;
+}
+
+/* Flight table */
+.flight-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 1rem;
+  table-layout: auto;
+  min-width: 600px;
+}
+
+.flight-table th,
+.flight-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #4b5563;
+  white-space: nowrap;
+}
+
+.flight-table th {
+  background-color: #374151;
+  font-weight: bold;
+}
+
+/* Alternating row colors */
+.flight-row-even {
+  background-color: #414b5c;
+}
+
+.flight-row-odd {
+  background-color: #4b5563;
+}
+
+/* Status cell styling */
+.flight-table td:last-child {
+  font-weight: bold;
+}
+
+/* Responsive tweaks */
+@media screen and (max-width: 600px) {
+  .flight-table th,
+  .flight-table td {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}
