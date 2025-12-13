@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import "../styles/Flight.css";
+// import "../styles/Flight.css";
 
 export default function Flight() {
   const { id } = useParams();

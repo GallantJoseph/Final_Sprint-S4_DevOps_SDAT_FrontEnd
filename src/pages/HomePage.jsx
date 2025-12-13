@@ -1,6 +1,6 @@
 // src/pages/HomePage.jsx
 import { useState, useEffect } from "react";
-import "../styles/HomePage.css";
+// import "../styles/HomePage.css";
 
 export default function HomePage() {
   const [currentFlightType, setCurrentFlightType] = useState("departures");
