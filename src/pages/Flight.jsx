@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-// import "../styles/Flight.css";
+import "../styles/Flight.css";
 
 export default function Flight() {
   const { id } = useParams();
@@ -10,7 +10,7 @@ export default function Flight() {
 
   const sampleFlight = {
     id: id,
-    airline: { id: 1, name: "CodeBrew Airways" },
+    airline: { id: 1, name: "Air Canada" },
     departureAirport: { id: 1, code: "YYZ", city: "Toronto", country: "Canada", timezone: "America/Toronto" },
     arrivalAirport: { id: 2, code: "YVR", city: "Vancouver", country: "Canada", timezone: "America/Vancouver" },
     departureGate: "A1",
@@ -106,41 +106,46 @@ export default function Flight() {
     <div className="flight-details-page">
       <div className="flight-card-top">
         <div className="flight-airline">{flight.airline.name}</div>
-        <div className="flight-number">Flight {flightID}</div>
+        <div className="flight-number">{flightID}</div>
       </div>
 
       <div className="flight-details-grid">
         {/* Departure */}
-        <div className="flight-side departure-side">
-          <div><strong>Gate:</strong> {flight.departureGate}</div>
+        <div className="flight-side  left departure-side">
+          <div className="flight-side departure-side">Departing From</div>
           <div className="airport-code">{flight.departureAirport.code}</div>
           <div className="airport-city">{flight.departureAirport.city}, {flight.departureAirport.country}</div>
-          <div className="weekday">{depParts.weekday}</div>
-          <div className="date">{depParts.dateLong}</div>
+          <div><strong>Daparting from</strong> <span className="highlight"> Gate {flight.departureGate}</span></div>
+          <div className="airport-city">{flight.departureAirport.city} Int'll Airport, {flight.departureAirport.code}</div>
+          <div className="date">{depParts.date}
+          {depParts.dateLong}</div>
           <div className="time">{depParts.timeWithZone}</div>
         </div>
 
         {/* Middle - Empty now */}
         <div className="flight-middle">
-          {/* Aircraft removed from middle */}
+          {/* Aircraft removed from middle but kept to leave gap*/}
         </div>
 
         {/* Arrival */}
-        <div className="flight-side arrival-side">
-          <div><strong>Gate:</strong> {flight.arrivalGate}</div>
+        <div className="flight-side right arrival-side">
+          {/* Arrival side */}
+          <div className="flight-side right arrival-side">Arriving At</div>
           <div className="airport-code">{flight.arrivalAirport.code}</div>
+        
           <div className="airport-city">{flight.arrivalAirport.city}, {flight.arrivalAirport.country}</div>
-          <div className="weekday">{arrParts.weekday}</div>
-          <div className="date">{arrParts.dateLong}</div>
+          <div><strong>Landing At </strong><span className="highlight">Gate {flight.arrivalGate}</span> </div>
+          <div className="airport-city">{flight.arrivalAirport.city} Int'll Airport, {flight.arrivalAirport.city}</div>
+          <div className="date">{arrParts.weekday} {arrParts.dateLong}</div>
           <div className="time">{arrParts.timeWithZone}</div>
         </div>
       </div>
 
       {/* Extra Info */}
       <div className="flight-extra">
-        <div className="flight-aircraft"><strong>Aircraft:</strong> {flight.aircraft.model}</div>
-        <div className="flight-duration"><strong>Total Flight Time:</strong> {duration}</div>
-        <div className="flight-status"><strong>Status:</strong> {flight.status}</div>
+        <div className="flight-aircraft"><strong>Aircraft:</strong> <span className="highlight">{flight.aircraft.model}</span></div>
+        <div className="flight-duration"><strong>Total Flight Time:</strong> <span className="highlight">{duration}</span></div>
+        <div className="flight-status"><strong>Status:</strong> <span className="highlight">{flight.status}</span></div>
       </div>
     </div>
   );

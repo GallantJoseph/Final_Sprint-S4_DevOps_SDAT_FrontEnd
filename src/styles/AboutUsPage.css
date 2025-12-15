@@ -1,0 +1,77 @@
+.about-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #2b3747;
+  color: white;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.about-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.about-tab-btn {
+  background-color: #374151;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.about-tab-btn:hover {
+  background-color: #4b5563;
+  color: white;
+}
+
+.about-tab-btn.active {
+  background-color: #2a5bc4ce;
+  color: white;
+}
+
+.about-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.about-card {
+  background-color: #374151;
+  padding: 40px 48px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.473);
+  max-width: 700px;
+  min-height: 305px;;
+  width: 100%;
+  text-align: left;
+}
+
+.about-card h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #93c5fd;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);;
+}
+
+.about-info p {
+  margin: 16px 0;
+  line-height: 1.5;
+  font-size: 20px;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);;
+}
+
+.about-info p strong {
+  color: #93c5fd;
+}

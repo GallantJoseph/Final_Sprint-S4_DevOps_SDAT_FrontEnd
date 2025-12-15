@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/auth';
-// import "../styles/AdminLogin.css";
+import "../styles/AdminLogin.css";
 
 export default function AdminLogin() {
   const [password, setPassword] = useState('');

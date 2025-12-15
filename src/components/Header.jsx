@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-// import "../styles/Header.css";
+import "../styles/Header.css";
 
 export default function Header() {
   const location = useLocation();
@@ -33,25 +33,9 @@ export default function Header() {
     navigate("/");
   }
 
-  let dashboardPath;
-  let dashboardText;
-
-  if (isAdmin) {
-    dashboardPath = "/admin/dashboard";
-    dashboardText = "Admin Dashboard";
-  } else {
-    dashboardPath = "/user/dashboard";
-    dashboardText = "Dashboard";
-  }
-
   let homeClass = "nav-link";
   if (isActive("/")) {
     homeClass = "nav-link active";
-  }
-
-  let dashboardClass = "nav-link";
-  if (isActive(dashboardPath)) {
-    dashboardClass = "nav-link active";
   }
 
   let aboutClass = "nav-link";
@@ -69,6 +53,11 @@ export default function Header() {
     adminClass = "nav-link active";
   }
 
+  let dashboardClass = "nav-link";
+  if (isActive("/admin/dashboard")) {
+    dashboardClass = "nav-link active";
+  }
+
   if (isAdmin) {
     return (
       <header className="header">
@@ -79,8 +68,8 @@ export default function Header() {
               Home
             </Link>
 
-            <Link to={dashboardPath} className={dashboardClass}>
-              {dashboardText}
+            <Link to="/admin/dashboard" className={dashboardClass}>
+              Admin Dashboard
             </Link>
 
             <Link to="/about" className={aboutClass}>
@@ -106,10 +95,6 @@ export default function Header() {
           <div className="nav-links">
             <Link to="/" className={homeClass}>
               Home
-            </Link>
-
-            <Link to={dashboardPath} className={dashboardClass}>
-              {dashboardText}
             </Link>
 
             <Link to="/about" className={aboutClass}>
