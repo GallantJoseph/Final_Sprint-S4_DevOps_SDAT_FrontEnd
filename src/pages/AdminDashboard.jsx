@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import "../styles/AdminDashboard.css";
+import "../styles/AdminDashboard.css";
 
 // Placeholder tab components
 function AirportsTab() {

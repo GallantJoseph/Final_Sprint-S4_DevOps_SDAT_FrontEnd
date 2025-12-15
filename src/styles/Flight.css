@@ -1,0 +1,125 @@
+.flight-details-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2b3747;
+  color: white;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.flight-card-top {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto 40px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flight-airline {
+  font-size: 50px;
+  font-weight: bold;
+  color: #93c5fd;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);
+}
+
+.flight-number {
+  font-size: 40px;
+  color: #93c5fd;
+  font-weight: bold;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);
+}
+
+.flight-details-grid {
+  background-color: #182f53;
+  border-radius: 12px;
+  padding: 48px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
+  max-width: 1000px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 180px 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.flight-side{
+  display: block;
+  font-size: 26px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);
+  margin-bottom: 16px;
+}
+.left{
+  text-align: left;
+}
+.right{
+  text-align: right;
+}
+.airport-code {
+  font-size: 40px;
+  font-weight: 900;
+  color: #93c5fd;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);
+  margin-bottom: 8px;
+}
+
+.airport-city {
+  font-size: 24px;
+  color: #e5e7eb;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);
+  margin-bottom: 6px;
+}
+
+.date {
+  font-size: 21px;
+  color: #93c5fd;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);
+}
+
+.time {
+  font-size: 32px;
+  font-weight: bold;
+  color: #93c5fd;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);
+  margin-top: 10px;
+}
+
+.flight-extra {
+  max-width: 1000px;
+  width: 100%;
+  margin: 48px auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  font-size: 21px;
+}
+
+.flight-aircraft,
+.flight-status {
+  color: #e5e7eb;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);
+  font-weight: 500;
+}
+
+.highlight {
+  color: #93c5fd;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);
+  font-weight: bold;
+}
+
+.flight-loading,
+.flight-error {
+  text-align: center;
+  padding: 64px;
+  font-size: 29px;
+  color: white;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.89);
+}
