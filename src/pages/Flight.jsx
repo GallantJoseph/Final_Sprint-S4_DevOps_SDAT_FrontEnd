@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../styles/Flight.css";
 
 export default function Flight() {
@@ -8,144 +8,143 @@ export default function Flight() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const sampleFlight = {
-    id: id,
-    airline: { id: 1, name: "Air Canada" },
-    departureAirport: { id: 1, code: "YYZ", city: "Toronto", country: "Canada", timezone: "America/Toronto" },
-    arrivalAirport: { id: 2, code: "YVR", city: "Vancouver", country: "Canada", timezone: "America/Vancouver" },
-    departureGate: "A1",
-    arrivalGate: "B3",
-    aircraft: { model: "Boeing 738" },
-    status: "Scheduled",
-    departureTime: "2025-12-15T08:30:00",
-    arrivalTime: "2025-12-15T10:45:00",
-    flightNumber: "WS123"
-  };
-
-  function getApiUrl(path) {
-    return import.meta.env.VITE_API_URL + path;
-  }
-
-  function generateFlightNumber(flight) {
-    let airlineParts = flight.airline.name.split(" ");
-    let code = airlineParts[0].charAt(0).toUpperCase();
-    if (airlineParts.length > 1) code += airlineParts[1].charAt(0).toUpperCase();
-    else if (airlineParts[0].length > 1) code += airlineParts[0].charAt(1).toUpperCase();
-
-    let digitsMatch = flight.flightNumber.match(/\d{2}/);
-    let numberPart = digitsMatch ? digitsMatch[0] : "00";
-    return code + numberPart + flight.id;
-  }
+  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
   function formatFullDate(dateString, timeZone) {
-    let d = new Date(dateString);
-    let weekday = d.toLocaleDateString(undefined, { weekday: "long" });
-    let dateLong = d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
-    let timeWithZone = d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit", hour12: true, timeZoneName: "short", timeZone: timeZone });
+    if (!dateString) return { weekday: "—", dateLong: "—", timeWithZone: "—" };
+
+    const d = new Date(dateString);
+    const optionsDate = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    const optionsTime = { hour: "numeric", minute: "2-digit", hour12: true, timeZoneName: "short" };
+
+    const weekday = d.toLocaleDateString("en-US", { weekday: "long" });
+    const dateLong = d.toLocaleDateString("en-US", optionsDate);
+    const timeWithZone = d.toLocaleTimeString("en-US", { ...optionsTime, timeZone: timeZone || undefined });
+
     return { weekday, dateLong, timeWithZone };
   }
 
+
   function computeDuration(startString, endString) {
-    let start = new Date(startString);
-    let end = new Date(endString);
-    let diffMs = end - start;
-    if (diffMs < 0) return "N/A";
-    let minutes = Math.floor(diffMs / 60000);
-    let hours = Math.floor(minutes / 60);
-    let mins = minutes % 60;
+    if (!startString || !endString) return "—";
+
+    const start = new Date(startString);
+    const end = new Date(endString);
+    const diffMs = end - start;
+    if (diffMs <= 0) return "—";
+
+    const minutes = Math.floor(diffMs / 60000);
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
     return `${hours}h ${mins < 10 ? "0" : ""}${mins}m`;
   }
 
   useEffect(() => {
     setLoading(true);
     setError(false);
-    let controller = new AbortController();
-    let timeout = setTimeout(() => {
-      controller.abort();
-      setError(true);
-      setLoading(false);
-      setFlight(sampleFlight);
-    }, 8000);
 
-    fetch(getApiUrl("/api/flights/" + id), { signal: controller.signal })
-      .then(res => res.ok ? res.json() : Promise.reject())
-      .then(data => {
-        clearTimeout(timeout);
-        setFlight(data || sampleFlight);
+    fetch(`${API_BASE}/flights/${id}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Flight not found");
+        return res.json();
+      })
+      .then((data) => {
+        setFlight(data);
         setLoading(false);
       })
-      .catch(err => {
-        if (err.name !== "AbortError") {
-          setError(true);
-          setLoading(false);
-          setFlight(sampleFlight);
-        }
+      .catch((err) => {
+        console.error("Error loading flight:", err);
+        setError(true);
+        setLoading(false);
       });
-
-    return () => clearTimeout(timeout);
   }, [id]);
 
-  if (loading) return (
-    <div className="flight-details-page">
-      <p className="flight-loading">Loading flight details...</p>
-    </div>
-  );
+  if (loading) {
+    return (
+      <div className="flight-details-page">
+        <p className="flight-loading">Loading flight details...</p>
+      </div>
+    );
+  }
 
-  if (!flight) return (
-    <div className="flight-details-page">
-      <p className="flight-error">Flight not found.</p>
-    </div>
-  );
+  if (error || !flight) {
+    return (
+      <div className="flight-details-page">
+        <p className="flight-error">Flight not found.</p>
+      </div>
+    );
+  }
 
-  const depParts = formatFullDate(flight.departureTime, flight.departureAirport.timezone);
-  const arrParts = formatFullDate(flight.arrivalTime, flight.arrivalAirport.timezone);
+  const depParts = formatFullDate(flight.departureTime, flight.departureAirport?.timezone);
+  const arrParts = formatFullDate(flight.arrivalTime, flight.arrivalAirport?.timezone);
   const duration = computeDuration(flight.departureTime, flight.arrivalTime);
-  const flightID = generateFlightNumber(flight);
+
+const flightNumber = flight.airline?.code
+  ? `${flight.airline.code.toUpperCase()}${flight.id}`
+  : `Error${flight.id}`;
+
 
   return (
     <div className="flight-details-page">
       <div className="flight-card-top">
-        <div className="flight-airline">{flight.airline.name}</div>
-        <div className="flight-number">{flightID}</div>
+        <div className="flight-airline">{flight.airline?.name || "Unknown Airline"}</div>
+        <div className="flight-number">{flightNumber}</div>
       </div>
 
       <div className="flight-details-grid">
         {/* Departure */}
-        <div className="flight-side  left departure-side">
-          <div className="flight-side departure-side">Departing From</div>
-          <div className="airport-code">{flight.departureAirport.code}</div>
-          <div className="airport-city">{flight.departureAirport.city}, {flight.departureAirport.country}</div>
-          <div><strong>Daparting from</strong> <span className="highlight"> Gate {flight.departureGate}</span></div>
-          <div className="airport-city">{flight.departureAirport.city} Int'll Airport, {flight.departureAirport.code}</div>
-          <div className="date">{depParts.date}
-          {depParts.dateLong}</div>
+        <div className="flight-side left departure-side">
+          <div className="section-title">Departing From</div>
+          <div className="airport-code">{flight.departureAirport?.code || "?"}</div>
+          <div className="airport-city">
+            {flight.departureAirport?.name || flight.departureAirport?.city || "Unknown Airport"},{" "}
+            {flight.departureAirport?.country || ""}
+          </div>
+          <div>
+            <strong>Departing from</strong>{" "}
+            <span className="highlight">
+              Gate {flight.departureGate?.gateNumber || "-"}
+            </span>
+          </div>
+          <div className="date">{depParts.dateLong}</div>
           <div className="time">{depParts.timeWithZone}</div>
         </div>
 
-        {/* Middle - Empty now */}
-        <div className="flight-middle">
-          {/* Aircraft removed from middle but kept to leave gap*/}
-        </div>
+
+        <div className="flight-middle"></div>
 
         {/* Arrival */}
         <div className="flight-side right arrival-side">
-          {/* Arrival side */}
-          <div className="flight-side right arrival-side">Arriving At</div>
-          <div className="airport-code">{flight.arrivalAirport.code}</div>
-        
-          <div className="airport-city">{flight.arrivalAirport.city}, {flight.arrivalAirport.country}</div>
-          <div><strong>Landing At </strong><span className="highlight">Gate {flight.arrivalGate}</span> </div>
-          <div className="airport-city">{flight.arrivalAirport.city} Int'll Airport, {flight.arrivalAirport.city}</div>
-          <div className="date">{arrParts.weekday} {arrParts.dateLong}</div>
+          <div className="section-title">Arriving At</div>
+          <div className="airport-code">{flight.arrivalAirport?.code || "?"}</div>
+          <div className="airport-city">
+            {flight.arrivalAirport?.name || flight.arrivalAirport?.city || "Unknown Airport"},{" "}
+            {flight.arrivalAirport?.country || ""}
+          </div>
+          <div>
+            <strong>Landing at</strong>{" "}
+            <span className="highlight">
+              Gate {flight.arrivalGate?.gateNumber || "-"}
+            </span>
+          </div>
+          <div className="date">{arrParts.dateLong}</div>
           <div className="time">{arrParts.timeWithZone}</div>
         </div>
       </div>
 
       {/* Extra Info */}
       <div className="flight-extra">
-        <div className="flight-aircraft"><strong>Aircraft:</strong> <span className="highlight">{flight.aircraft.model}</span></div>
-        <div className="flight-duration"><strong>Total Flight Time:</strong> <span className="highlight">{duration}</span></div>
-        <div className="flight-status"><strong>Status:</strong> <span className="highlight">{flight.status}</span></div>
+        <div className="flight-aircraft">
+          <strong>Aircraft:</strong>{" "}
+          <span className="highlight">{flight.aircraft?.type || "Unknown"}</span>
+        </div>
+        <div className="flight-duration">
+          <strong>Total Flight Time:</strong> <span className="highlight">{duration}</span>
+        </div>
+        <div className="flight-status">
+          <strong>Status:</strong>{" "}
+          <span className="highlight">{flight.status || "Scheduled"}</span>
+        </div>
       </div>
     </div>
   );

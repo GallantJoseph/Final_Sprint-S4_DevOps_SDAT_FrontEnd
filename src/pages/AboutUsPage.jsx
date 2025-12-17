@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../styles/AboutUsPage.css";
 
 export default function AboutUsPage() {
-  const [activeTab, setActiveTab] = useState("who"); // "who", "stand", "history", "sustainability"
+  const [activeTab, setActiveTab] = useState("who");
 
   function renderContent() {
     if (activeTab === "who") {
