@@ -182,7 +182,7 @@ export default function AirlinesAdmin() {
   }
 
   if (loading) {
-    return <p className="loading-message">Loading airlines and cities...</p>;
+    return <p className="loading-message">Attempting to load airlines and cities from database....</p>;
   }
 
   let formTitle = "Add New Airline";

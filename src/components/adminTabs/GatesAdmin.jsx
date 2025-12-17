@@ -189,7 +189,7 @@ export default function GatesAdmin() {
   }
 
   if (loading) {
-    return <p className="loading-message">Loading gates and airports...</p>;
+    return <p className="loading-message">Attempting to load gates and airports from database...</p>;
   }
 
   let formTitle = "Add New Gate";

@@ -188,7 +188,7 @@ export default function CitiesAdmin() {
   }
 
   if (loading) {
-    return <p className="loading-message">Loading cities...</p>;
+    return <p className="loading-message">Attempting to load cities from database...</p>;
   }
 
   let formTitle = "Add New City";

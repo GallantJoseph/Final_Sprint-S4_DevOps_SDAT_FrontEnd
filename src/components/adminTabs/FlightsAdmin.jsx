@@ -254,7 +254,7 @@ async function handleDelete(flightId) {
 
 
   if (loading) {
-    return <p className="loading-message">Loading flights and data...</p>;
+    return <p className="loading-message">Attempting to load flights from database...</p>;
   }
 
   let formTitle = "Add New Flight";

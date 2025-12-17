@@ -8,7 +8,7 @@ export default function Flight() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8080";
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   function formatFullDate(dateString, timeZone) {
     if (!dateString) return { weekday: "—", dateLong: "—", timeWithZone: "—" };
@@ -62,7 +62,7 @@ export default function Flight() {
   if (loading) {
     return (
       <div className="flight-details-page">
-        <p className="flight-loading">Loading flight details...</p>
+        <p className="flight-loading">Attempting to load flight details from database...</p>
       </div>
     );
   }

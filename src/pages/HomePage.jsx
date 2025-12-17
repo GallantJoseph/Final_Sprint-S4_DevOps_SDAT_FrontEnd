@@ -9,7 +9,7 @@ export default function HomePage() {
   const [error, setError] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8080";
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   function formatDateTime(dateString) {
     if (!dateString) return { date: "—", time: "—" };
@@ -95,7 +95,7 @@ function generateFlightNumber(flight) {
   }
 
 function renderFlightsTable() {
-  if (loading) return <p className="loading-text">Loading flights...</p>;
+  if (loading) return <p className="loading-text">Attempting to load flights from database...</p>;
   if (error) return <p className="error-text">Failed to load flights.</p>;
   if (flights.length === 0) return <p>No flights available.</p>;
 
