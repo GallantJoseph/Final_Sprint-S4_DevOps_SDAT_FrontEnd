@@ -1,33 +1,48 @@
 import { useState } from "react";
+import CitiesAdmin from "../components/adminTabs/CitiesAdmin";
+import PassengersAdmin from "../components/adminTabs/PassengersAdmin";
+import AirportsAdmin from "../components/adminTabs/AirportsAdmin";
+import GatesAdmin from "../components/adminTabs/GatesAdmin";
+import AircraftAdmin from "../components/adminTabs/AircraftAdmin";
+import AirlinesAdmin from "../components/adminTabs/AirlinesAdmin";
+import FlightsAdmin from "../components/adminTabs/FlightsAdmin";
 import "../styles/AdminDashboard.css";
 
-// Placeholder tab components
-function AirportsTab() {
-  return <div>Airports management content here</div>;
-}
-function FlightsTab() {
-  return <div>Flights management content here</div>;
-}
-function AirlinesTab() {
-  return <div>Airlines management content here</div>;
-}
-function AircraftTab() {
-  return <div>Aircraft management content here</div>;
-}
-function GatesTab() {
-  return <div>Gates management content here</div>;
+
+function CitiesTab() {
+  return <CitiesAdmin />;
 }
 function PassengersTab() {
-  return <div>Passengers management content here</div>;
+  return <PassengersAdmin />;
+}
+function AirportsTab() {
+  return <AirportsAdmin />;
+}
+function GatesTab() {
+  return <GatesAdmin />
 }
 
+function AircraftTab() {
+  return <AircraftAdmin />
+}
+
+function AirlinesTab() {
+  return <AirlinesAdmin />
+}
+function FlightsTab() {
+  return <FlightsAdmin />
+}
+
+
 const TABS = [
+  { key: "Cities", component: CitiesTab },
   { key: "Airports", component: AirportsTab },
-  { key: "Flights", component: FlightsTab },
+  { key: "Gates", component: GatesTab },
   { key: "Airlines", component: AirlinesTab },
   { key: "Aircraft", component: AircraftTab },
-  { key: "Gates", component: GatesTab },
+  { key: "Flights", component: FlightsTab },
   { key: "Passengers", component: PassengersTab },
+
 ];
 
 export default function AdminDashboard() {
@@ -78,10 +93,11 @@ export default function AdminDashboard() {
       {/* Main content */}
       <main className="main-content">
         <div className="admin-card">
-          {ActiveComponent && <ActiveComponent />}
+          {ActiveComponent && <ActiveComponent key={activeTab} />}
           {!ActiveComponent && <p>Select a tab to view content.</p>}
         </div>
       </main>
+
     </div>
   );
 }

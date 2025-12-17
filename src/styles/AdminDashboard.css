@@ -64,100 +64,20 @@
 }
 
 .main-content {
+  background-color: #2b3747;
   flex: 1;
-  padding: 32px;
   display: flex;
   justify-content: center;
   align-items: flex-start; 
 }
 
 .admin-card {
-  background-color: #374151; 
-  padding: 48px;
+  background-color: #fdfdfd; 
+
   border-radius: 12px;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
   max-width: 1000px;           
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
 
 }
-
-/* -------------------------------------------------------------------
-BElow is for when we complete admin cards for each intem in admin tabs 
------------------------------------------------------------------------
-*/
-/* .admin-card h1,
-.admin-card h2,
-.admin-card h3 {
-  font-size: 35px;
-  text-align: center;
-  color: #93c5fd;
-  margin-bottom: 24px;
-  font-weight: bold;
-}
-
-.admin-card form {
-  display: grid;
-  gap: 19px;
-}
-
-.admin-card label {
-  font-weight: 500;
-  color: white;
-  margin-bottom: 6px;
-  display: block;
-} */
-
-/* .admin-card input,
-.admin-card select,
-.admin-card textarea {
-  padding: 14px 19px;
-  border-radius: 8px;
-  border: 1px solid #4b5563;
-  background-color: #1f2937;
-  color: white;
-  font-size: 16px;
-  width: 100%;
-  box-sizing: border-box;
-} */
-
-/* .admin-card input::placeholder,
-.admin-card textarea::placeholder {
-  color: #9ca3af;
-} */
-
-/* .admin-card button {
-  padding: 14px 29px;
-  background-color: #2563eb;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  align-self: flex-start;
-} */
-
-/* .admin-card button:hover {
-  background-color: #1d4ed8;
-} */
-
-/* .admin-card table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 16px;
-} */
-
-/* .admin-card th,
-.admin-card td {
-  padding: 16px;
-  text-align: left;
-  border-bottom: 1px solid #4b5563;
-} */
-
-/* .admin-card th {
-  background-color: #1f2937;
-  color: #93c5fd;
-} */

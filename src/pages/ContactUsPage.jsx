@@ -2,8 +2,8 @@ import { useState } from "react";
 import "../styles/ContactUsPage.css";
 
 export default function ContactUsPage() {
-  const [activeTab, setActiveTab] = useState("info"); // "info" or "feedback"
-  const [submitted, setSubmitted] = useState(false); // track form submission
+  const [activeTab, setActiveTab] = useState("info");
+  const [submitted, setSubmitted] = useState(false);
 
   function renderContent() {
     if (activeTab === "info") {
@@ -35,7 +35,7 @@ export default function ContactUsPage() {
             className="contact-form"
             onSubmit={(e) => {
               e.preventDefault();
-              setSubmitted(true); // show success message
+              setSubmitted(true); 
             }}
           >
             <input type="text" placeholder="Name" className="contact-input" required />
@@ -52,12 +52,12 @@ export default function ContactUsPage() {
 
   function handleInfoClick() {
     setActiveTab("info");
-    setSubmitted(false); // reset success message if switching tabs
+    setSubmitted(false); 
   }
 
   function handleFeedbackClick() {
     setActiveTab("feedback");
-    setSubmitted(false); // reset success message
+    setSubmitted(false); 
   }
 
   function getTabClass(tabName) {
