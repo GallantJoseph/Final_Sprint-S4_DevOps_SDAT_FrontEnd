@@ -72,8 +72,8 @@
 }
 
 .admin-card {
-  background-color: #fdfdfd; 
-
+  background-color: transparent;
+  margin-top: 40px;
   border-radius: 12px;
   max-width: 1000px;           
   width: 100%;

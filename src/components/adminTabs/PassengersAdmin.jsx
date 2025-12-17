@@ -204,7 +204,7 @@ export default function PassengersAdmin() {
   }
 
   if (loading) {
-    return <p className="loading-message">Loading passengers and data...</p>;
+    return <p className="loading-message">Attempting to load passengers from database...</p>;
   }
 
   let formTitle = editingId !== null ? "Edit Passenger" : "Add New Passenger (and Book on Flight)";

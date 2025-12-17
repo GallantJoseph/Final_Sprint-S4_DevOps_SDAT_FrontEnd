@@ -190,7 +190,7 @@ export default function AirportsAdmin() {
   }
 
   if (loading) {
-    return <p className="loading-message">Loading airports and cities...</p>;
+    return <p className="loading-message">Attempting to load airports and cities from database...</p>;
   }
 
   let formTitle = "Add New Airport";

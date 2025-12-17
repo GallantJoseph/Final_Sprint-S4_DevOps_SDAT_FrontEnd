@@ -168,7 +168,7 @@ export default function AircraftAdmin() {
   }
 
   if (loading) {
-    return <p className="loading-message">Loading aircraft and data...</p>;
+    return <p className="loading-message">Attempting to load aircrafts from database...</p>;
   }
 
   let formTitle = editingId !== null ? "Edit Aircraft" : "Add New Aircraft";
